@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 
 	private Animator anim;
 	private CharacterController controller;
-
+	public GameManager gameManager;
 
 
 
@@ -52,6 +52,12 @@ public class Player : MonoBehaviour
 		moveDirection.y -= gravity * Time.deltaTime;
 		if (impact.magnitude > 0.2) controller.Move(impact * Time.deltaTime);
 		impact = Vector3.Lerp(impact, Vector3.zero, 5 * Time.deltaTime);
+
+		if (transform.position.y < 40)
+		{
+			Debug.Log("Ground touch");
+			gameManager.GameOver();
+		}
 	}
 
 	void AddImpact(Vector3 dir, float force)
@@ -64,9 +70,12 @@ public class Player : MonoBehaviour
 		{
 			if(col.gameObject.tag == "Sphere")
 			{
-				Debug.Log("impact function");
 				AddImpact(col.gameObject.GetComponent<Rigidbody>().velocity , 3000);
 			}
 
+			if(col.gameObject.tag == "Sun")
+			{
+				AddImpact(col.gameObject.GetComponent<Rigidbody>().velocity, 5000);
+			}
 		}
 }

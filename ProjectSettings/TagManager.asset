@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Sphere
+  - Sun
+  - Ground
   layers:
   - Default
   - TransparentFX
