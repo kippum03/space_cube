@@ -41,6 +41,12 @@ public class GameManager : MonoBehaviour
         isGameActive = false;
     }
 
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+
 
     IEnumerator SpawnSphere()
     {
@@ -52,10 +58,4 @@ public class GameManager : MonoBehaviour
         }
     
     }
-
-    void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
 }

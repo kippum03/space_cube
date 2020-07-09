@@ -16,7 +16,10 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(transform.position.y < 10)
+        {
+            Destroy(gameObject);
+        }
     }
 
     Vector3 RandomSpawnPos()
