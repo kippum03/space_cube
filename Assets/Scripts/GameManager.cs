@@ -15,11 +15,12 @@ public class GameManager : MonoBehaviour
     private bool isGameActive;
 
     void Start()
-    { 
+    {
+        isGameActive = true;
         StartCoroutine(SpawnSphere());
         score = 0;
         InvokeRepeating("UpdateScore", 2, 1);
-        isGameActive = true;
+    
     }
    
     void UpdateScore()
@@ -40,10 +41,6 @@ public class GameManager : MonoBehaviour
         isGameActive = false;
     }
 
-    void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
 
     IEnumerator SpawnSphere()
     {
@@ -55,4 +52,10 @@ public class GameManager : MonoBehaviour
         }
     
     }
+
+    void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 }
