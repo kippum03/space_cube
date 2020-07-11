@@ -7,9 +7,6 @@ public class Player : MonoBehaviour
 	private Animator anim;
 	private CharacterController controller;
 	public GameManager gameManager;
-
-
-
 	public float speed = 600.0f;
 	public float jumpSpeed = 600.0f;
 	public float turnSpeed = 400.0f;
@@ -17,12 +14,14 @@ public class Player : MonoBehaviour
 	public float gravity = 20.0f;
 	private Vector3 impact = Vector3.zero;
 	private float mass = 40.0f;
-	
+	public AudioClip crashSound;
+	private AudioSource playerAudio;
 
 	void Start()
 	{
 		controller = GetComponent<CharacterController>();
-		anim = gameObject.GetComponentInChildren<Animator>();	
+		anim = gameObject.GetComponentInChildren<Animator>();
+		playerAudio = GetComponent<AudioSource>();
 	}
 
 	void Update()
@@ -71,11 +70,13 @@ public class Player : MonoBehaviour
 			if(col.gameObject.tag == "Sphere")
 			{
 				AddImpact(col.gameObject.GetComponent<Rigidbody>().velocity , 3000);
+				playerAudio.PlayOneShot(crashSound, 1.0f);
 			}
 
 			if(col.gameObject.tag == "Sun")
 			{
 				AddImpact(col.gameObject.GetComponent<Rigidbody>().velocity, 5000);
+				playerAudio.PlayOneShot(crashSound, 1.0f);
 			}
 		}
 }
